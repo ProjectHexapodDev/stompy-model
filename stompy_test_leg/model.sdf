@@ -1,0 +1,62 @@
+<?xml version='1.0'?>
+<sdf version='1.4'>
+  <model name="stompy">
+    <static>false</static>
+      <link name='body'>
+        <pose>0 0 0.7 0 0 0</pose>
+
+        <inertial>
+          <mass>1823.41</mass>
+          <inertia>
+            <ixx>499.7</ixx>
+            <ixy>0.019</ixy>
+            <ixz>-172.0</ixz>
+            <iyy>3253.0</iyy>
+            <iyz>0.019</iyz>
+            <izz>3049.0</izz>
+          </inertia>
+        </inertial>
+        <collision name='collision'>
+          <geometry>
+            <box>
+              <size>4.47037 1.3716 1.</size>
+            </box>
+          </geometry>
+          <surface>
+            <bounce>
+              <restitution_coefficient>0</restitution_coefficient>
+            </bounce>
+            <friction>
+              <ode>
+                <mu>1000000</mu>
+                <mu2>1000000</mu2>
+              </ode>
+            </friction>
+          </surface>
+        </collision>
+
+        <visual name='visual'>
+          <pose>0 0 -0.495 0 0 0</pose>
+          <geometry>
+            <box>
+              <size>4.47037 1.3716 1.</size>
+            </box>
+          </geometry>
+        </visual>
+      </link>
+
+      <!-- front left leg -->
+      <include>
+        <uri>model://stompy_leg</uri>
+        <pose>2.35117 0.5842 1.2 0 0 0.7853</pose>
+        <name>fl_leg</name>
+      </include>
+      <joint name="body_to_fl_leg" type="revolute">
+        <child>fl_leg::hip</child>
+        <parent>body</parent>
+        <axis>
+          <xyz>0 0 1</xyz>
+        </axis>
+      </joint>
+  </model>
+</sdf>
